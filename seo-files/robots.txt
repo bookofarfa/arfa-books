@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://arfabookonline.netlify.app/sitemap_index.xml
