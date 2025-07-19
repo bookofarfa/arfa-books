@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arfa Books – SuperFast</title>
+  <meta name="description" content="Arfa Books – Fast access to the best collection of academic and educational books.">
+  <link rel="preload" href="/public/index.css" as="style" />
+  <link rel="stylesheet" href="/public/index.css" />
+
+  <!-- Lazy load polyfill -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const lazyImages = document.querySelectorAll("img[loading='lazy']");
+      lazyImages.forEach(img => {
+        if ('loading' in HTMLImageElement.prototype) return;
+        const src = img.getAttribute('data-src');
+        if (src) img.src = src;
+      });
+    });
+  </script>
+
+  <!-- Inline critical styles (optional small boost) -->
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fdfdfd;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: #111;
+      color: #fff;
+    }
+    .fast-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+    .fast-links a {
+      text-decoration: none;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      display: block;
+      background: #fff;
+      transition: all 0.2s ease;
+    }
+    .fast-links a:hover {
+      background: #fafafa;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🚀 Arfa Books – SuperFast Access</h1>
+    <p>Instant access to all key pages</p>
+  </header>
+
+  <section class="fast-links">
+    <a href="/index.html">Home</a>
+    <a href="/books-collection.html"> Book Collection</a>
+    <a href="/catalogue.html"> Catalogue</a>
+    <a href="/book-details.html?id=demo"> Book Details (Demo)</a>
+    <a href="/cart.html">🛒 Cart</a>
+    <a href="/about.html"> About</a>
+    <a href="/contact.html"> Contact</a>
+  </section>
+
+  <footer style="text-align:center; padding:1rem; font-size:0.9rem; color:#777">
+    © 2025 Arfa Books – Powered by Netlify & Firebase
+  </footer>
+
+  <!-- Lazy load images (example, optional) -->
+  <!--
+  <img loading="lazy" data-src="public/book4.png" alt="Book" width="200" />
+  -->
+
+  <!-- Defer other JS -->
+  <script defer src="/public/lazy-scripts.js"></script>
+</body>
+</html>
