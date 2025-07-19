@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, user-scalable=yes" />
+  <title>Checkout - Arfa Books</title>
+  <link rel="stylesheet" href="checkout.css">
+</head>
+<body onload="loadCartSummary()">
+<div class="currency-top-wrapper">
+  <div class="currency-selector">
+    <img src="change.png" alt="Change Currency" />
+    <span class="currency-code">PKR</span>
+    <ul class="currency-dropdown">
+      <li data-currency="PKR">PKR</li>
+      <li data-currency="USD">USD</li>
+      <li data-currency="EUR">EUR</li>
+      <li data-currency="INR">INR</li>
+      <li data-currency="AED">AED</li>
+    </ul>
+  </div>
+</div>
+  <!-- 🧭 Header -->
+  <header>
+    <img src="logoo.png" alt="Logo" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+ <a href="books-collection.html">Books Collection</a>
+      <a href="catalogue.html">Catalogue</a>
+      <a href="contact.html">Contact us</a>
+      <a href="about.html">About us</a>
+      <a href="cart.html" class="cart-link">🛒<span id="cart-count">0</span></a>
+    </nav>
+  </header>
+
+  <!-- 🟪 Hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>CHECKOUT</h1>
+      <p>Complete your order securely</p>
+    </div>
+  </section>
+
+
+  <!-- 🧾 Checkout -->
+  <section class="checkout-container">
+    <!-- Left: Contact + Shipping -->
+    <div class="checkout-left">
+      <h2>Contact Information</h2>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required />
+      </div>
+
+      <h2>Shipping Address</h2>
+      <div class="form-group"><label for="firstName">First Name:</label><input type="text" id="firstName" required /></div>
+      <div class="form-group"><label for="lastName">Last Name:</label><input type="text" id="lastName" required /></div>
+      <div class="form-group"><label for="address">Address:</label><input type="text" id="address" required /></div>
+      <div class="form-group"><label for="apartment">Apartment, Suite (optional):</label><input type="text" id="apartment" /></div>
+      <div class="form-group"><label for="city">City:</label><input type="text" id="city" required /></div>
+      <div class="form-group"><label for="country">Country/Region:</label><input type="text" id="country" required /></div>
+      <div class="form-group"><label for="region">Region/State:</label><input type="text" id="region" required /></div>
+      <div class="form-group"><label for="postal">Postal Code:</label><input type="text" id="postal" required /></div>
+      <div class="form-group"><label for="phone">Phone:</label><input type="text" id="phone" required /></div>
+
+      <div class="form-group checkbox">
+        <input type="checkbox" id="offers" />
+        <label for="offers">Keep me up to date on news and exclusive offers</label>
+      </div>
+    </div>
+
+    <!-- Right: Order Summary -->
+    <div class="checkout-right">
+      <h2>Order Summary</h2>
+      <div class="summary-box">
+        <div class="summary-line"><span>Subtotal:</span><span id="subtotal">Rs. 0</span></div>
+        <div class="summary-line"><span>Shipping:</span><span id="shipping">Rs. 250</span></div>
+        <div class="summary-line"><span>Payment Method:</span><span>COD</span></div>
+        <div class="summary-line total"><span>Total:</span><span id="total">Rs. 0</span></div>
+     <div class="summary-line"><span>Payment Method:</span><span>Now COD</span></div>
+
+      </div>
+
+      <button class="place-order-btn" onclick="submitOrder()">Confirm Order</button>
+      <a href="cart.html" class="back-to-cart">← Back to Cart</a>
+    </div>
+  </section>
+
+
+  <!-- 🔻 Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <div class="logo-with-name">
+          <img src="logoo.png" alt="Logo" class="footer-logo" />
+          <h2>Arfa Books</h2>
+        </div>
+      </div>
+      <div class="footer-middle">
+        <h3>Useful Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="books collection.html">Books Collection</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-right">
+        <h3>Contact Us</h3>
+        <ul>
+          <li>📩: arfabookpk@gmail.com</li>
+          <li>📞: +923074216700</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom-strip">
+      <p>Copyright © 2025, Arfa Books, All Rights Reserved.</p>
+    </div>
+  </footer>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-database.js";
+
+// ✅ Firebase Config
+const app = initializeApp({
+  apiKey: "AIzaSyB8OGOqevzd44-YHtYZS6oRJby0ciArcqM",
+  authDomain: "arfa-books-1.firebaseapp.com",
+  databaseURL: "https://arfa-books-1-default-rtdb.firebaseio.com",
+  projectId: "arfa-books-1",
+  storageBucket: "arfa-books-1.appspot.com",
+  messagingSenderId: "539275525690",
+  appId: "1:539275525690:web:03574ec748b8f129a17f03"
+});
+
+const db = getDatabase(app);
+const IPGEO_KEY = "9c1e9dbc2cbf444083a0f5bea9ebf221";
+let currentCurrency = "PKR";
+let exchangeRates = {};
+
+window.loadCartSummary = async function () {
+  const checkoutItem = JSON.parse(localStorage.getItem("checkoutItem"));
+  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  const items = checkoutItem ? [checkoutItem] : cartItems;
+
+  if (!items.length) {
+    alert("Your cart is empty!");
+    return;
+  }
+
+  const subtotalPKR = items.reduce((sum, item) => sum + (parseFloat(item.price) || 0) * (item.quantity || 1), 0);
+  const shippingPKR = 250;
+  const totalPKR = subtotalPKR + shippingPKR;
+
+  try {
+    const loc = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${IPGEO_KEY}`).then(r => r.json());
+    currentCurrency = loc.currency?.code || "PKR";
+    document.querySelector(".currency-code").textContent = currentCurrency;
+
+    const ex = await fetch(`https://open.er-api.com/v6/latest/PKR`).then(r => r.json());
+    exchangeRates = ex.rates || {};
+
+    const rate = exchangeRates[currentCurrency] || 1;
+    updatePrices(subtotalPKR, shippingPKR, totalPKR, rate);
+  } catch (e) {
+    console.warn("Currency API Error:", e.message);
+    updatePrices(subtotalPKR, shippingPKR, totalPKR, 1);
+  }
+
+  renderCartBooks(items);
+};
+
+function updatePrices(sub, ship, total, rate) {
+  document.getElementById("subtotal").textContent = `${(sub * rate).toFixed(2)} ${currentCurrency}`;
+  document.getElementById("shipping").textContent = `${(ship * rate).toFixed(2)} ${currentCurrency}`;
+  document.getElementById("total").textContent = `${(total * rate).toFixed(2)} ${currentCurrency}`;
+}
+
+function renderCartBooks(items) {
+  const container = document.querySelector(".checkout-right");
+  const existing = document.querySelector(".ordered-items");
+  if (existing) existing.remove();
+
+  let html = `<h3>Books in Order</h3><div class="ordered-items">`;
+  items.forEach(item => {
+    html += `
+      <div class="ordered-book">
+        <img src="${item.imageUrl || 'https://i.ibb.co/6NP4NC2/default-book.png'}" />
+        <p>${item.title || 'Untitled'}</p>
+        <p><small>${item.author || ''}</small></p>
+        <p><small>Qty: ${item.quantity || 1}</small></p>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+  container.insertAdjacentHTML("beforeend", html);
+}
+
+window.submitOrder = function () {
+  const get = id => document.getElementById(id).value.trim();
+  const checkoutItem = JSON.parse(localStorage.getItem("checkoutItem"));
+  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  const items = checkoutItem ? [checkoutItem] : cartItems;
+
+  if (!items.length) return alert("❌ Your cart is empty!");
+
+  const subtotal = items.reduce((sum, item) => sum + (parseFloat(item.price) || 0) * (item.quantity || 1), 0);
+  const shipping = 250;
+  const total = subtotal + shipping;
+
+  const orderData = {
+    email: get("email"),
+    firstName: get("firstName"),
+    lastName: get("lastName"),
+    address: get("address"),
+    apartment: get("apartment"),
+    city: get("city"),
+    country: get("country"),
+    region: get("region"),
+    postal: get("postal"),
+    phone: get("phone"),
+    offers: document.getElementById("offers").checked,
+    cart: items,
+    timestamp: new Date().toISOString(),
+    subtotal,
+    shipping,
+    total
+  };
+
+  push(ref(db, "checkoutOrders"), orderData)
+    .then(() => {
+      localStorage.removeItem("cart");
+      localStorage.removeItem("checkoutItem");
+
+      const fullName = `${orderData.firstName} ${orderData.lastName}`;
+      const modal = document.createElement("div");
+      modal.className = "confirmation-modal";
+
+      const box = document.createElement("div");
+      box.className = "confirmation-box";
+      box.innerHTML = `
+        <h2>🎉 Order Confirmed!</h2>
+        <p>Thank you <strong>${fullName}</strong> for your order.</p>
+        <p>You will receive your books within <strong>2–3 working days</strong>.</p>
+        <button>OK</button>
+      `;
+
+      modal.appendChild(box);
+      document.body.appendChild(modal);
+
+      box.querySelector("button").addEventListener("click", () => {
+        modal.remove();
+        window.location.href = "index.html";
+      });
+    })
+    .catch(err => {
+      alert("❌ Failed to place order: " + err.message);
+      console.error(err);
+    });
+};
+
+// Currency dropdown
+document.addEventListener("DOMContentLoaded", () => {
+  const selector = document.querySelector(".currency-selector");
+  const dropdown = selector?.querySelector(".currency-dropdown");
+
+  selector?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  });
+
+  dropdown?.querySelectorAll("li").forEach(item => {
+    item.addEventListener("click", () => {
+      currentCurrency = item.dataset.currency;
+      document.querySelector(".currency-code").textContent = currentCurrency;
+
+      const checkoutItem = JSON.parse(localStorage.getItem("checkoutItem"));
+      const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+      const items = checkoutItem ? [checkoutItem] : cartItems;
+
+      const subtotal = items.reduce((sum, item) => sum + (parseFloat(item.price) || 0) * (item.quantity || 1), 0);
+      const shipping = 250;
+      const total = subtotal + shipping;
+      const rate = exchangeRates[currentCurrency] || 1;
+
+      updatePrices(subtotal, shipping, total, rate);
+    });
+  });
+
+  document.body.addEventListener("click", () => {
+    dropdown.style.display = "none";
+  });
+});
+</script>
+</body>
+</html>

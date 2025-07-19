@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280, user-scalable=yes" />
+  <title>Books Collection | Arfa Books</title>
+<meta name="description" content="Browse our extensive book collection including Physics, Chemistry, Biology, History, and more.">
+<meta name="keywords" content="Book Collection, Science Books, History Books, Arfa Books, Academic Books, Online Bookstore">
+<meta name="author" content="Arfa Books">
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="mpYFfY0m-ug-xZBazYR4rt8xNpz0XtoCZ4qDORMvC-g" />
+
+  <link rel="stylesheet" href="books collection.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- ✅ Right after <body> tag -->
+<div class="currency-top-wrapper">
+  <div class="currency-selector">
+    <img src="change.png" alt="Change Currency" />
+    <span class="currency-code">PKR</span>
+    <ul class="currency-dropdown">
+      <li data-currency="PKR">PKR</li>
+      <li data-currency="USD">USD</li>
+      <li data-currency="EUR">EUR</li>
+      <li data-currency="INR">INR</li>
+      <li data-currency="AED">AED</li>
+    </ul>
+  </div>
+</div>
+<!-- Header -->
+<header>
+  <a href="index.html">
+    <img src="logoo.png" alt="Arfa Books Logo" class="logo" />
+  </a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="books-collection.html">Books Collection</a>
+    <a href="catalogue.html">Catalogue</a>
+    <a href="contact.html">Contact us</a>
+    <a href="about.html">About us</a>
+    <a href="cart.html" class="cart-link">🛒<span id="cart-count">0</span></a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Our Books Collection</h1>
+    <p>Discover a wide range of books across various genres.</p>
+  </div>
+</section>
+
+ 
+
+<!-- Search Bar -->
+<section class="mid-section">
+  <div class="mid-container">
+    <h2 class="collection-heading">ALL BOOKS COLLECTIONS</h2>
+    <input type="text" id="searchInput" placeholder="🔍 Search by title, author, ISBN or Publisher..." class="search-bar" />
+  </div>
+</section>
+
+<!-- Categories Sidebar + Book List -->
+<div class="collection-container">
+  <aside class="category-sidebar">
+    <div class="category-card active" onclick="filterByCategory('all')" data-category="all">
+      <div class="category-icon">📚</div>
+      <h3>All Books</h3>
+      <p>View all available books</p>
+    </div>
+    <div class="category-card" onclick="filterByCategory('new-editions')" data-category="new-editions">
+      <div class="category-icon">📗</div>
+      <h3>New Editions</h3>
+      <p>Latest edition books</p>
+    </div>
+    <div class="category-card" onclick="filterByCategory('new-arrivals')" data-category="new-arrivals">
+      <div class="category-icon">🆕</div>
+      <h3>New Arrivals</h3>
+      <p>Recently added books</p>
+    </div>
+    <div class="category-card" onclick="filterByCategory('imported-international')" data-category="imported-international">
+      <div class="category-icon">🌍</div>
+      <h3>Imported & International Books</h3>
+      <p>Books from around the world</p>
+    </div>
+    <div class="category-card" onclick="filterByCategory('reference-research')" data-category="reference-research">
+      <div class="category-icon">🔍</div>
+      <h3>Reference & Research Books</h3>
+      <p>Academic and research materials</p>
+    </div>
+  </aside>
+  <section class="book-list" id="book-list"></section>
+</div>
+
+<!-- 💱 Currency Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/money.js/0.2.0/money.min.js"></script>
+
+<!-- 🔥 JavaScript -->
+<script type="module">
+  import { initializeApp, deleteApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+  import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-database.js";
+
+  const configs = [ /* all 7 configs */ 
+    { databaseURL: "https://arfa-books-1-default-rtdb.firebaseio.com", projectId: "arfa-books-1", apiKey: "AIzaSyB8OGOqevzd44-YHtYZS6oRJby0ciArcqM", authDomain: "arfa-books-1.firebaseapp.com", appId: "1:539275525690:web:03574ec748b8f129a17f03" },
+    { databaseURL: "https://arfa-book-2-default-rtdb.firebaseio.com", projectId: "arfa-book-2", apiKey: "AIzaSyAzQYdvMchSXQXKFYF2h5pIMzg_3oYXHi0", authDomain: "arfa-book-2.firebaseapp.com", appId: "1:578807601723:web:5418b81f1ce2617e3b9a1e" },
+    { databaseURL: "https://arfa-books-3-default-rtdb.firebaseio.com", projectId: "arfa-books-3", apiKey: "AIzaSyClI45bj9YEVQmJgSuq7n9vFgHU-nX0JnI", authDomain: "arfa-books-3.firebaseapp.com", appId: "1:637695993940:web:fd7e478f72d7374c7fe5c1" },
+    { databaseURL: "https://arfa-book-4-default-rtdb.firebaseio.com", projectId: "arfa-book-4", apiKey: "AIzaSyARhNHigDApX8KhS8EpYkaRjxLCeMQA9IM", authDomain: "arfa-book-4.firebaseapp.com", appId: "1:1011767855581:web:d7341c0ea54facabf64e34" },
+    { databaseURL: "https://arfa-books-5-default-rtdb.firebaseio.com", projectId: "arfa-books-5", apiKey: "AIzaSyCtaDntGen2uU-8t3Toa5AmfUYLok8Rwv0", authDomain: "arfa-books-5.firebaseapp.com", appId: "1:626330389845:web:f73f1b20d1b9c1b20af3dc" },
+    { databaseURL: "https://arfa-books-6-default-rtdb.firebaseio.com", projectId: "arfa-books-6", apiKey: "AIzaSyCq-g7pb9cAGQaegV8VrEg9pULRdUXeToU", authDomain: "arfa-books-6.firebaseapp.com", appId: "1:65381778789:web:62db8890829b37cc430d8c" },
+    { databaseURL: "https://arfa-books-7-default-rtdb.firebaseio.com", projectId: "arfa-books-7", apiKey: "AIzaSyDS417whiWI5WQlPWo2bNpvuBPud9WUquE", authDomain: "arfa-books-7.firebaseapp.com", appId: "1:1081206480787:web:e638d54bd1234f33201266" }
+  ];
+
+  const IPGEOLOCATION_API_KEY = "9c1e9dbc2cbf444083a0f5bea9ebf221";
+  const OER_APP_ID = "2a80b372471f4ccc91db0e43e1841eb6";
+
+  let allBooks = [];
+  let currentCategory = "all";
+
+  window.filterByCategory = function(category) {
+    currentCategory = category;
+    document.querySelectorAll(".category-card").forEach(card => card.classList.remove("active"));
+    document.querySelector(`[data-category="${category}"]`).classList.add("active");
+
+    const headingMap = {
+      "all": "ALL BOOKS COLLECTIONS",
+      "new-editions": "NEW EDITIONS",
+      "new-arrivals": "NEW ARRIVALS",
+      "imported-international": "IMPORTED & INTERNATIONAL BOOKS",
+      "reference-research": "REFERENCE & RESEARCH BOOKS"
+    };
+    document.querySelector(".collection-heading").textContent = headingMap[category] || "ALL BOOKS COLLECTIONS";
+
+    const filtered = category === "all" ? allBooks : allBooks.filter(book => book.category === category);
+    renderBooks(filtered);
+  };
+
+  async function loadAllBooks() {
+    allBooks = [];
+
+    const promises = configs.map(async (config, i) => {
+      try {
+        const appName = `app${i}`;
+        const existingApp = getApps().find(app => app.name === appName);
+        const app = existingApp || initializeApp(config, appName);
+        const tempDb = getDatabase(app);
+        const snapshot = await get(ref(tempDb, "books"));
+
+        snapshot.forEach(child => {
+          allBooks.push({ ...child.val(), key: child.key, projectId: config.projectId });
+        });
+
+        await deleteApp(app);
+      } catch (err) {
+        console.warn(`Skipping ${config.projectId}: ${err.message}`);
+      }
+    });
+
+    await Promise.all(promises);
+    renderBooks(allBooks);
+    await convertPrices();
+  }
+
+  function renderBooks(list) {
+    const container = document.getElementById("book-list");
+    container.innerHTML = "";
+    if (list.length === 0) {
+      container.innerHTML = "<p class='no-books'>📭 No books found.</p>";
+      return;
+    }
+
+    list.forEach(book => {
+      const card = document.createElement("div");
+      card.className = "book-card";
+card.innerHTML = `
+  <a href="book-details.html?id=${book.key}&project=${book.projectId}" class="book-title-link">
+    <img src="${book.imageUrl || 'https://i.ibb.co/qNVGqM7/book-placeholder.png'}"
+     onerror="if (!this.dataset.retry) { this.dataset.retry = '1'; this.src='${book.imageUrl || 'https://i.ibb.co/qNVGqM7/book-placeholder.png'}'; } else { this.src='https://i.ibb.co/qNVGqM7/book-placeholder.png'; }" />
+  </a>
+  <h3>
+    <a href="book-details.html?id=${book.key}&project=${book.projectId}" class="book-title-link" title="${book.title}">
+      ${book.title}
+    </a>
+  </h3>
+  <p class="book-author">by ${book.author}</p>
+<p class="book-price" data-price="${book.price}">${book.price} PKR</p>
+  <button class="cart-btn" 
+    data-title="${book.title.replace(/"/g, "&quot;")}"
+    data-author="${book.author.replace(/"/g, "&quot;")}"
+    data-price="${book.price}"
+    data-key="${book.key}"
+    data-projectid="${book.projectId}"
+    data-image="${book.imageUrl || 'https://i.ibb.co/qNVGqM7/book-placeholder.png'}">
+    Add to Cart
+  </button>
+`;
+
+
+      card.querySelector(".cart-btn").addEventListener("click", () => {
+        const bookData = {
+          title: book.title,
+          author: book.author,
+          price: parseFloat(book.price),
+          key: book.key,
+          projectId: book.projectId,
+          imageUrl: book.imageUrl,
+          quantity: 1
+        };
+        addToCart(bookData);
+      });
+
+      container.appendChild(card);
+    });
+  }
+
+  function addToCart(book) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const found = cart.find(item => item.key === book.key && item.projectId === book.projectId);
+    if (found) found.quantity++;
+    else cart.push({ ...book, quantity: 1 });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    alert("✅ Book added to cart!");
+  }
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    document.getElementById("cart-count").textContent = count;
+  }
+let currentCurrency = "PKR";
+let exchangeRates = {};
+
+async function fetchRates() {
+  const res = await fetch("https://open.er-api.com/v6/latest/PKR");
+  const data = await res.json();
+  exchangeRates = data.rates;
+}
+
+function convertPrice(pkrAmount, currency) {
+  const rate = exchangeRates[currency] || 1;
+  return (pkrAmount * rate).toFixed(2);
+}
+
+function updatePrices() {
+  document.querySelectorAll(".book-price[data-price]").forEach(el => {
+    const pkr = parseFloat(el.dataset.price);
+    if (currentCurrency === "PKR") {
+      el.textContent = `${pkr} PKR`;
+    } else {
+      el.textContent = `${convertPrice(pkr, currentCurrency)} ${currentCurrency}`;
+    }
+  });
+
+  const codeEl = document.querySelector(".currency-code");
+  if (codeEl) codeEl.textContent = currentCurrency;
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await fetchRates();
+  updatePrices();
+
+  const selector = document.querySelector(".currency-selector");
+  const dropdown = selector?.querySelector(".currency-dropdown");
+
+  if (selector && dropdown) {
+    selector.addEventListener("click", () => {
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    });
+
+    dropdown.querySelectorAll("li").forEach(item => {
+      item.addEventListener("click", () => {
+        currentCurrency = item.dataset.currency;
+        dropdown.style.display = "none";
+        updatePrices();
+      });
+    });
+  }
+});
+
+  document.getElementById("searchInput").addEventListener("input", (e) => {
+    const term = e.target.value.toLowerCase();
+    const filtered = allBooks.filter(b =>
+      b.title?.toLowerCase().includes(term) ||
+      b.author?.toLowerCase().includes(term) ||
+      b.publisher?.toLowerCase().includes(term) ||
+      b.isbn?.toLowerCase().includes(term)
+    ).filter(book => currentCategory === "all" || book.category === currentCategory);
+    renderBooks(filtered);
+  });
+
+  loadAllBooks();
+
+
+</script>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <div class="logo-with-name">
+        <img src="logoo.png" alt="Arfa Books Logo">
+        <h2>Arfa Books</h2>
+      </div>
+    </div>
+    <div class="footer-middle">
+      <h3>Useful Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="books collection.html">Books Collection</a></li>
+        <li><a href="catalogue.html">Catalogue</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-right">
+      <h3>Contact Us</h3>
+      <ul>
+        <li>📩: arfabookpk@gmail.com</li>
+        <li>📞: +923074216700</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom-strip">
+    <p>Copyright © 2025, Arfa Books, All Rights Reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

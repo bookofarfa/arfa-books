@@ -1,0 +1,586 @@
+
+
+/* 🔥book details*/
+
+body {
+margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', serif;
+    background-color: white; /
+}
+
+/* Header Navigation */
+header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  z-index: 999;
+}
+
+.logo {
+  position: absolute;
+  left: -10px;
+  top: -20px;
+  height: 140px;
+}
+
+nav {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+  font-family: 'Playfair Display', serif;
+}
+
+nav a:hover {
+  color: gold;
+}
+
+ 
+
+ /* 🟪 Hero Section */
+  .hero-banner {
+    background: url("1234.jpg") center center/cover no-repeat;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 60px 40px;
+    color: white;
+    text-align: center;
+  }
+
+
+.page-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 40px;
+  color: white;
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  margin-top: -50px;
+  text-align: center;
+  margin-left: -50px;
+
+  /* ✨ Animation */
+  opacity: 0;
+  animation: fadeIn 1.8s ease forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* thoda neeche se aata lage */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-subtitle {
+  font-family: 'Time new Roman', serif;
+  font-size: 14.8px;
+  color: white;
+  letter-spacing: 1px;
+ margin-top: -30px; /* 🔥 Yeh karega close to heading */
+  margin-left: -50px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+
+  /* Optional: Fade-in animation */
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* thoda neeche se aata lage */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* 📘 Book Detail Section */
+.book-detail {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40px;
+  padding: 60px 80px;
+  flex-wrap: wrap;
+}
+
+.book-left img {
+  max-width: 280px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.book-right {
+  max-width: 600px;
+}
+
+.book-right h2 {
+  white-space: normal;      /* allow line breaks */
+  overflow-wrap: break-word;
+  word-break: break-word;
+  font-size: 29px;
+  font-weight: bold;
+  font-family: 'Garamond', serif;
+  line-height: 1.4;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.book-info p {
+  font-family: 'Garamond', serif;
+  font-size: 20px;
+  color: #1a1919;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.book-info h3 {
+  font-size: 22px;
+  font-family: 'Garamond', serif;
+  color: #1a1919;
+  margin-top: 20px;
+  text-align: left;
+}
+
+/* 💰 Book Price */
+#bookPrice {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1a1919;
+  font-family: 'Garamond', serif;
+  margin-top: 20px;
+  text-align: left;
+}
+
+/* 🔢 Quantity & Action Buttons */
+.quantity-and-actions {
+  margin-top: 20px;
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.quantity-container button {
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  background: none;
+  color: #030303;
+  border: none;
+  border-radius: 5px;
+}
+
+.quantity-container input {
+  width: 60px;
+  text-align: center;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+}
+
+/* 🛍 Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.cart-btn, .buy-btn {
+  padding: 10px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.cart-btn {
+  background-color: #d8db0b;
+  color: rgb(0, 0, 0);
+}
+
+.buy-btn {
+   background: rgb(6, 94, 13);
+  color: white;
+}
+
+
+/* Each card */
+.book-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 15px;
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.book-card:hover {
+  transform: scale(1.03);
+}
+
+/* 📸 Book Image */
+.book-card img {
+  width: 100%;
+  height: 280px;        /* ✅ FIXED: consistent height */
+  object-fit: cover;    /* ✅ FIXED: no cut or stretch */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+/* 📝 Title & Price */
+.book-card p {
+  font-size: 16px;
+  color: #333;
+  margin: 4px 0;
+  font-family: 'Playfair Display', serif;
+}
+
+
+.book-card button.cart-btn {
+  font-size: 13px;
+  padding: 6px 10px;
+  background-color: #880376;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+/* 🌙 Footer */
+  .site-footer {
+    background: url('footerbg.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 50px 20px;
+    font-family: 'Times New Roman', serif;
+    position: relative;
+    margin-top: 50px;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+    gap: 100px;
+    align-items: flex-start;
+  }
+
+  .footer-left .logo-with-name {
+    display: flex;
+    align-items: center;
+    gap: -10px;
+    margin-top: -50px;
+  }
+
+  .footer-left .logo-with-name img {
+    width: 140px;
+    height: auto;
+  }
+
+  .footer-left .logo-with-name h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 30px;
+    margin: 0;
+    color: white;
+  }
+
+  .footer-middle h3,
+  .footer-right h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .footer-middle ul,
+  .footer-right ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  .footer-middle ul li,
+  .footer-right ul li {
+    margin-bottom: 10px;
+  }
+
+  .footer-middle ul li a,
+  .footer-right ul li {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 15px;
+  }
+
+  .footer-middle ul li a:hover {
+    color: #ffd700;
+  }
+
+  .footer-right ul li {
+    font-size: 15px;
+  }
+
+  .footer-bottom-strip {
+    position: relative;
+    width: 103.9%;
+    background-color: white;
+    padding: 8px 8px;
+    margin: 10px;
+    text-align: center;
+    z-index: 100;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+    margin-left: -20px;
+    right: 0px;
+    margin-bottom: -50px;
+  }
+
+  .footer-bottom-strip p {
+    color: black;
+    font: bold 14px 'Times New Roman', serif;
+    margin: 0;
+    font-size: 14px;
+    font-family: 'Times New Roman', serif;
+    letter-spacing: 0.5px;
+  }
+
+.cart-link {
+  position: relative;
+  font-size: 18px;
+}
+
+#cart-count {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+
+/* 📚 Related Books Section */
+
+.related-title {
+  font-size: 26px;
+  font-weight: 600;
+  margin: 40px 40px 10px;
+  color: #222;
+  font-family: 'Cinzel Decorative', serif;
+}
+.related-books {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 0 40px 60px;
+  max-height: 880px;
+  overflow-y: auto; /* ✅ So scroll appears if needed */
+}
+
+.related-books .book-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  text-align: center;
+  padding: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.related-books .book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.related-books img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #f4f4f4;
+  transition: transform 0.3s ease;
+}
+
+.related-books .book-card:hover img {
+  transform: scale(1.05);
+}
+.related-books .book-price {
+  font-size: 23px;         /* 🔼 Bada font */
+  font-weight: 600;        /* 🔒 Bold */
+  margin-top: 4px;
+  color: #0e0b0b;
+  font-family: 'Garamond', serif;
+}
+
+.related-books .book-author {
+  font-style: italic;      /* 🔁 Italic */
+  font-size: 14px;         /* 🔽 Chhota */
+  color: #000000;
+  margin-top: -6px;
+  font-family: 'Times New Roman', serif;
+}
+
+.related-books p strong {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.related-books button {
+  display: inline-block;
+  margin-top: 10px;
+  background: #b9d616;
+  color: #000;
+  padding: 10px 18px;          /* 🔼 Padding zyada */
+  font-size: 15px;             /* 🔼 Font size bara */
+  font-weight: 600;            /* Bold text */
+  border: none;
+  border-radius: 25px;         /* Thoda aur rounded */
+  cursor: pointer;
+  font-family: 'Times New Roman', serif;
+  transition: background 0.3s ease;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.related-books button:hover {
+  background: #e0ee17;
+}
+
+/* 🌐 GLOBAL DESKTOP-ONLY LAYOUT FIX */
+html, body {
+  width: 100%;
+  min-width: 1280px;        /* 👈 force PC layout */
+  overflow-x: hidden;         /* 👈 allow horizontal scroll if needed */
+  font-family: 'Garamond','Times New Roman', 'Cinzel Decorative', serif;
+  -webkit-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  text-size-adjust: none;
+  zoom: 1;                  /* 👈 prevent scaling issues */
+  touch-action: manipulation;
+  overscroll-behavior: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ✅ Optional: Prevent mobile responsiveness completely */
+@media (max-width: 1279px) {
+  body::before {
+    content: "Please rotate or zoom for full view 📱➡️🖥️";
+    display: block;
+    text-align: center;
+    background: #222;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+/* Optional Scroll Fix for mobile */
+body {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* ✅ Optional: Prevent navbar collapse */
+nav {
+  display: flex !important;
+  justify-content: center !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+}
+/* 🌍 Currency Selector Top Right */
+.currency-top-wrapper {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  z-index: 1000;
+}
+
+.currency-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 6px 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-size: 14px;
+  font-weight: bold;
+  color: #720505;
+  position: relative;
+}
+
+.currency-selector img {
+  width: 18px;
+  height: 18px;
+}
+
+.currency-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  list-style: none;
+  padding: 6px 0;
+  width: 100px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+}
+
+.currency-dropdown li {
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s ease;
+}
+
+.currency-dropdown li:hover {
+  background: #f0f0f0;
+}

@@ -1,0 +1,320 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', serif;
+    background-color: white; /* Sirf body white rahe */
+  }
+  
+  /* 🧭 Navigation Bar */
+    header {
+  background: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+  z-index: 10;
+}
+
+nav {
+  display: flex;
+  justify-content: center;   /* Center horizontally */
+  align-items: center;
+  gap: 30px;                  /* Space between links */
+  margin-top: 0px;
+}
+
+nav a {
+  font-size: 14.8px;
+  color: white;
+  text-decoration: none;
+  font-family: 'Playfair Display', serif;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: gold;
+}
+
+  
+  /* 🎯 Hero Section Fix for About Page */
+  .hero {
+  background: url("1234.jpg") center center / cover no-repeat;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;      /* 👈 Add this */
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: white;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 50px;
+  margin-top: -20px;        /* 👈 Space between heading and subheading */
+  font-family: 'Cinzel Decorative', serif;
+}
+.hero p {
+  font-size: 18px;
+  font-family: 'Inter', sans-serif;
+  margin-top: -40px; /* 👈 Pulls it closer to h1 */
+  text-align: center;
+}
+
+
+
+.from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .header {
+  position: relative;
+  width: 100%;
+
+  height: 100px; /* enough height for both */
+}
+
+/* 🎀 Logo fixed to left corner */
+.logo {
+  position: absolute;
+  left: -10px;
+  top: -20px;
+  height: 140px;
+}
+
+
+/* 🎯 Center nav */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 2rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14.8px;
+  font-family: 'Times New Roman', serif;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: gold;
+}
+
+.intro-section {
+  padding: 60px 40px;
+  background-color: #fff;
+  color: #222;
+  font-family: 'Playfair Display', serif;
+}
+
+.intro-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.intro-text {
+  flex: 1 1 55%;
+}
+
+.intro-text h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.intro-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.intro-image {
+  flex: 1 1 40%;
+  text-align: center;
+}
+
+.intro-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* 🌙 Footer */
+ .site-footer {
+  background: url('footerbg.jpg') no-repeat center center;
+  background-size: cover;
+  color: white;
+  padding: 50px 20px;
+  font-family: 'Times New Roman', serif;
+  position: relative;
+  margin-top: 50px;
+ }
+
+ .footer-content {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+  gap: 100px;
+  align-items: flex-start;
+ }
+
+ .footer-left .logo-with-name {
+  display: flex;
+  align-items: center;
+  gap: -10px;
+  margin-top: -50px;
+ }
+
+ .footer-left .logo-with-name img {
+  width: 140px;
+  height: auto;
+ }
+
+ .footer-left .logo-with-name h2 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 30px;
+  margin: 0;
+  color: white;
+ }
+
+ .footer-middle h3,
+ .footer-right h3 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 20px;
+  margin-bottom: 10px;
+ }
+
+ .footer-middle ul,
+ .footer-right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+ }
+
+ .footer-middle ul li,
+ .footer-right ul li {
+  margin-bottom: 10px;
+ }
+
+ .footer-middle ul li a,
+ .footer-right ul li {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-size: 15px;
+ }
+
+ .footer-middle ul li a:hover {
+  color: #ffd700;
+ }
+
+ .footer-right ul li {
+  font-size: 15px;
+ }
+
+ .footer-bottom-strip {
+  position: relative;
+  width: 103.9%;
+  background-color: white;
+  padding: 8px 8px;
+  margin: 10px;
+  text-align: center;
+  z-index: 100;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+  margin-left: -20px;
+  right: 0px;
+  margin-bottom: -50px;
+ }
+
+ .footer-bottom-strip p {
+  color: black;
+  font: bold 14px 'Times New Roman', serif;
+  margin: 0;
+  font-size: 14px;
+  font-family: 'Times New Roman', serif;
+  letter-spacing: 0.5px;
+ }
+
+.cart-link {
+  position: relative;
+  font-size: 18px;
+}
+
+#cart-count {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+/* 🌐 GLOBAL DESKTOP-ONLY LAYOUT FIX */
+html, body {
+ width: 100%;
+ min-width: 1280px;    /* 👈 force PC layout */
+ overflow-x: hidden;    /* 👈 allow horizontal scroll if needed */
+ font-family: 'Garamond','Times New Roman', 'Cinzel Decorative', serif;
+ -webkit-text-size-adjust: none;
+ -ms-text-size-adjust: none;
+ text-size-adjust: none;
+ zoom: 1;         /* 👈 prevent scaling issues */
+ touch-action: manipulation;
+ overscroll-behavior: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ✅ Optional: Prevent mobile responsiveness completely */
+@media (max-width: 1279px) {
+  body::before {
+    content: "Please rotate or zoom for full view 📱➡️🖥️";
+    display: block;
+    text-align: center;
+    background: #222;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+/* Optional Scroll Fix for mobile */
+body {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* ✅ Optional: Prevent navbar collapse */
+nav {
+  display: flex !important;
+  justify-content: center !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+}

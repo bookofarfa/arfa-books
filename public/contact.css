@@ -1,0 +1,353 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman', serif;
+  background-color: white;
+}
+
+/* 🧭 Navigation */
+header {
+  background: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+  z-index: 10;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+nav a {
+  font-size: 14.8px;
+  color: white;
+  text-decoration: none;
+  font-family: 'Playfair Display', serif;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: gold;
+}
+
+/* 🟪 Hero Section */
+.hero {
+
+    background: url("1234.jpg") center center/cover no-repeat;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 60px 40px;
+    color: white;
+    text-align: center;
+  }
+
+
+
+.hero-text {
+  max-width: 60%;
+}
+
+.hero h1 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 52px;
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  margin-top: -50px;
+  opacity: 0;
+  animation: fadeIn 1.8s ease forwards;
+}
+
+.hero p {
+  font-size: 14.8px;
+  margin-top: -30px;
+  opacity: 0;
+  animation: fadeIn 1.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🎀 Logo fixed to left corner */
+.logo {
+  position: absolute;
+  left: -10px;
+  top: -20px;
+  height: 140px;
+}
+
+/* 🔠 Heading Styling */
+.intro-heading {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #111;
+}
+
+.intro-heading .subline {
+  display: block;
+  font-family: 'Georgia', serif;
+  font-size: 16px;
+  font-weight: normal;
+  color: #000000;
+  margin-top: 10px;
+  line-height: 1.6;
+font-weight: bold;
+
+
+}
+
+/* 🧾 Contact Rows */
+
+.contact-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.contact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.contact-label {
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  font-weight: bold;
+  min-width: 200px;
+  gap: 12px;
+}
+
+.contact-label img {
+  width: 34px;
+  height: 34px;
+}
+
+.contact-value {
+  font-weight: bold;
+  color: white;
+  background-color: #850303;
+  padding: 6px 22px;
+  border-radius: 25px;
+  font-size: 15px;
+  white-space: nowrap;
+  min-width: 260px;
+  text-align: center;
+}
+
+.contact-note {
+  font-style: italic;
+  font-size: 15px;
+  flex: 1;
+  min-width: 300px;
+  color: #000000;
+  font-weight: bold;
+}
+
+.slogan
+    {
+    font-size: 20px;
+    font-weight: bold;
+    color: #19191a;
+    margin-top: 30px;
+    text-align: center;
+    }
+
+
+
+
+
+
+
+/* 🌙 Footer */
+ .site-footer {
+  background: url('footerbg.jpg') no-repeat center center;
+  background-size: cover;
+  color: white;
+  padding: 50px 20px;
+  font-family: 'Times New Roman', serif;
+  position: relative;
+  margin-top: 50px;
+ }
+
+ .footer-content {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+  gap: 100px;
+  align-items: flex-start;
+ }
+
+ .footer-left .logo-with-name {
+  display: flex;
+  align-items: center;
+  gap: -10px;
+  margin-top: -50px;
+ }
+
+ .footer-left .logo-with-name img {
+  width: 140px;
+  height: auto;
+ }
+
+ .footer-left .logo-with-name h2 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 30px;
+  margin: 0;
+  color: white;
+ }
+
+ .footer-middle h3,
+ .footer-right h3 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 20px;
+  margin-bottom: 10px;
+ }
+
+ .footer-middle ul,
+ .footer-right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+ }
+
+ .footer-middle ul li,
+ .footer-right ul li {
+  margin-bottom: 10px;
+ }
+
+ .footer-middle ul li a,
+ .footer-right ul li {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-size: 15px;
+ }
+
+ .footer-middle ul li a:hover {
+  color: #ffd700;
+ }
+
+ .footer-right ul li {
+  font-size: 15px;
+ }
+
+ .footer-bottom-strip {
+  position: relative;
+  width: 103.9%;
+  background-color: white;
+  padding: 8px 8px;
+  margin: 10px;
+  text-align: center;
+  z-index: 100;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+  margin-left: -20px;
+  right: 0px;
+  margin-bottom: -50px;
+ }
+
+ .footer-bottom-strip p {
+  color: black;
+  font: bold 14px 'Times New Roman', serif;
+  margin: 0;
+  font-size: 14px;
+  font-family: 'Times New Roman', serif;
+  letter-spacing: 0.5px;
+ }
+
+
+.cart-link {
+  position: relative;
+  font-size: 18px;
+}
+
+#cart-count {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+/* 🌐 GLOBAL DESKTOP-ONLY LAYOUT FIX */
+html, body {
+ width: 100%;
+ min-width: 1280px;    /* 👈 force PC layout */
+ overflow-x: hidden;    /* 👈 allow horizontal scroll if needed */
+ font-family: 'Garamond','Times New Roman', 'Cinzel Decorative', serif;
+ -webkit-text-size-adjust: none;
+ -ms-text-size-adjust: none;
+ text-size-adjust: none;
+ zoom: 1;         /* 👈 prevent scaling issues */
+ touch-action: manipulation;
+ overscroll-behavior: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ✅ Optional: Prevent mobile responsiveness completely */
+@media (max-width: 1279px) {
+  body::before {
+    content: "Please rotate or zoom for full view 📱➡️🖥️";
+    display: block;
+    text-align: center;
+    background: #222;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+/* Optional Scroll Fix for mobile */
+body {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* ✅ Optional: Prevent navbar collapse */
+nav {
+  display: flex !important;
+  justify-content: center !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+}

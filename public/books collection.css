@@ -1,0 +1,561 @@
+/* BOOK COLLECTION */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', serif;
+    background-color: white;
+  }
+  
+  /* 🧭 Navigation Bar */
+  header {
+    background: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+    z-index: 10;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 0px;
+  }
+
+  nav a {
+    font-size: 14.8px;
+    color: white;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: gold;
+  }
+
+ /* 🟪 Hero Section */
+  .hero{
+    background: url("1234.jpg") center center/cover no-repeat;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 60px 40px;
+    color: white;
+    text-align: center;
+  }
+
+  .hero-text {
+    max-width: 60%;
+  }
+
+  .hero h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 40px;
+    letter-spacing: 3px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    margin-top: -50px;
+    opacity: 0;
+    animation: fadeIn 1.8s ease forwards;
+  }
+
+  .hero p {
+    font-size: 14.8px;
+    margin-top: -30px;
+    opacity: 0;
+    animation: fadeIn 1.8s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .header {
+    position: relative;
+    width: 100%;
+    height: 100px;
+  }
+
+  /* 🎀 Logo fixed to left corner */
+  .logo {
+    position: absolute;
+    left: -10px;
+    top: -20px;
+    height: 140px;
+  }
+
+  /* 🎯 Center nav */
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 2rem;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14.8px;
+    font-family: 'Times New Roman', serif;
+    transition: color 0.3s ease;
+  }
+
+  /* 📚 Mid Section Styles */
+  .mid-section {
+    background: #fceeff;
+    padding: 40px 20px 20px;
+    text-align: center;
+  }
+
+  .mid-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .collection-heading {
+    font-family: 'Kugile Regular', serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #2e003e;
+    margin: 0;
+  }
+
+  .search-bar {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: 2px solid #aaa;
+    outline: none;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    transition: 0.3s ease;
+  }
+
+  .search-bar:focus {
+    border-color: #a700ff;
+    box-shadow: 0 0 12px rgba(167, 0, 255, 0.4);
+  }
+  
+/* 📂 Collection Container */
+  .collection-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 30px;
+    padding: 20px;
+    flex-wrap: wrap;
+  }
+
+  /* 🏷️ Category Sidebar */
+  .category-sidebar {
+    flex: 0 0 300px;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .category-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(114, 5, 90, 0.1), transparent);
+    transition: 0.5s;
+  }
+
+  .category-card:hover::before {
+    left: 100%;
+  }
+
+  .category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(114, 5, 90, 0.2);
+    border-color: #720404;
+  }
+
+  .category-card.active {
+    background: linear-gradient(135deg, #860101 0%, #cc817ede 100%);
+    color: white;
+    border-color: #72055a;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(114, 5, 90, 0.3);
+  }
+
+  .category-card.active .category-icon {
+    transform: scale(1.2);
+  }
+
+  .category-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .category-card h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 18px;
+    margin: 10px 0 5px 0;
+    color: inherit;
+  }
+
+  .category-card p {
+    font-size: 14px;
+    margin: 0;
+    opacity: 0.8;
+    color: inherit;
+  }
+
+  .category-card.active p {
+    opacity: 0.9;
+  }
+.book-list {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 0 20px;
+  }
+
+  .book-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: #720505;
+  }
+.book-card img {
+    width: 100%;
+  height: 250px;
+  object-fit: contain; 
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+  }
+
+  .book-card:hover img {
+  transform: scale(1.03);
+  }
+.book-card h3 {
+  font-family: 'Garamond', serif;
+  font-size: 18px;
+  margin: 10px 0 5px 0;
+  color: #000000;
+  line-height: 1.3;
+  max-height: 2.6em; /* limit to 2 lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.book-title-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  width: 100%;
+}
+.book-card h3 a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.book-card h3 a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.book-card h3 a:hover {
+  color: #720505;
+  text-decoration: none;
+}
+
+  .book-author {
+    font-size: 14px;
+    color: #000000;
+    margin: 5px 0;
+    font-style: italic;
+  }
+
+  .book-price {
+    font-size: 20px;
+    font-family: 'Garamond', serif;
+    font-weight: bold;
+    color: #000000;
+    margin: 10px 0;
+  }
+
+  /* Cart button */
+  .cart-btn {
+    background: linear-gradient(135deg, #f7c500 0%, #d4ac0d 100%);
+    color: #000000;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-family: 'Playfair Display', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .cart-btn:hover {
+    background: linear-gradient(135deg, #d4ac0d 0%, #b7950b 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(247, 197, 0, 0.4);
+  }
+
+  /* Cart link */
+  .cart-link {
+    position: relative;
+    font-size: 18px;
+  }
+
+  #cart-count {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+  /* 🌙 Footer */
+  .site-footer {
+    background: url('footerbg.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 50px 20px;
+    font-family: 'Times New Roman', serif;
+    position: relative;
+    margin-top: 50px;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+    gap: 100px;
+    align-items: flex-start;
+  }
+
+  .footer-left .logo-with-name {
+    display: flex;
+    align-items: center;
+    gap: -10px;
+    margin-top: -50px;
+  }
+
+  .footer-left .logo-with-name img {
+    width: 140px;
+    height: auto;
+  }
+
+  .footer-left .logo-with-name h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 30px;
+    margin: 0;
+    color: white;
+  }
+
+  .footer-middle h3,
+  .footer-right h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .footer-middle ul,
+  .footer-right ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  .footer-middle ul li,
+  .footer-right ul li {
+    margin-bottom: 10px;
+  }
+
+  .footer-middle ul li a,
+  .footer-right ul li {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 15px;
+  }
+
+  .footer-middle ul li a:hover {
+    color: #ffd700;
+  }
+
+  .footer-right ul li {
+    font-size: 15px;
+  }
+
+  .footer-bottom-strip {
+    position: relative;
+    width: 103.9%;
+    background-color: white;
+    padding: 8px 8px;
+    margin: 10px;
+    text-align: center;
+    z-index: 100;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+    margin-left: -20px;
+    right: 0px;
+    margin-bottom: -50px;
+  }
+
+  .footer-bottom-strip p {
+    color: black;
+    font: bold 14px 'Times New Roman', serif;
+    margin: 0;
+    font-size: 14px;
+    font-family: 'Times New Roman', serif;
+    letter-spacing: 0.5px;
+  }
+/* 🌐 GLOBAL DESKTOP-ONLY LAYOUT FIX */
+html, body {
+  width: 100%;
+  min-width: 1280px;        /* 👈 force PC layout */
+  overflow-x: hidden;         /* 👈 allow horizontal scroll if needed */
+  font-family: 'Garamond','Times New Roman', 'Cinzel Decorative', serif;
+  -webkit-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  text-size-adjust: none;
+  zoom: 1;                  /* 👈 prevent scaling issues */
+  touch-action: manipulation;
+  overscroll-behavior: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ✅ Optional: Prevent mobile responsiveness completely */
+@media (max-width: 1279px) {
+  body::before {
+    content: "Please rotate or zoom for full view 📱➡️🖥️";
+    display: block;
+    text-align: center;
+    background: #222;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+/* Optional Scroll Fix for mobile */
+body {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* ✅ Optional: Prevent navbar collapse */
+nav {
+  display: flex !important;
+  justify-content: center !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+}
+/* 🌍 Currency Selector Top Right */
+.currency-top-wrapper {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  z-index: 1000;
+}
+
+.currency-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 6px 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-size: 14px;
+  font-weight: bold;
+  color: #720505;
+  position: relative;
+}
+
+.currency-selector img {
+  width: 18px;
+  height: 18px;
+}
+
+.currency-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  list-style: none;
+  padding: 6px 0;
+  width: 100px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+}
+
+.currency-dropdown li {
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s ease;
+}
+
+.currency-dropdown li:hover {
+  background: #f0f0f0;
+}
