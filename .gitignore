@@ -67,14 +67,7 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
-# Ignore everything
 *
-
-# Allow only public and seo-files folders
 !public/
-!public/**
-!seo-files/
-!seo-files/**
-
-# Allow this file itself
-!.gitignore
+!public/robots.txt
+!public/sitemap.xml
