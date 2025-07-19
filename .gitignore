@@ -67,7 +67,12 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
-*
-!public/
-!public/robots.txt
-!public/sitemap.xml
+# ❌ Private folders (ignore these)
+admin/
+firebase/
+.vscode/
+src/
+drafts/
+temp/
+node_modules/
+.env
