@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+<<<<<<< HEAD
 Sitemap: https://arfabookonline.netlify.app/sitemap.xml
+=======
+Sitemap: https://arfabookonline.netlify.app/sitemap.xml
+>>>>>>> 65579ce86a9c265ae5cfed667c9b119d3fbfdfd4
