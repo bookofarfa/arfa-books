@@ -181,7 +181,10 @@
     // Step 2: group keys by projectId
     const refsByProject = {};
     refs.forEach(refStr => {
-      const [key, projectId] = refStr.split("_");
+      const lastUnderscore = refStr.lastIndexOf("_");
+      const key = refStr.slice(0, lastUnderscore);
+      const projectId = refStr.slice(lastUnderscore + 1);
+
       if (!refsByProject[projectId]) refsByProject[projectId] = [];
       refsByProject[projectId].push(key);
     });
@@ -235,7 +238,7 @@
 <img src="${book.imageUrl || 'https://i.ibb.co/qNVGqM7/book-placeholder.png'}"
      onerror="if (!this.dataset.retry) { this.dataset.retry = '1'; this.src='${book.imageUrl || 'https://i.ibb.co/qNVGqM7/book-placeholder.png'}'; } else { this.src='https://i.ibb.co/qNVGqM7/book-placeholder.png'; }" />
 
-          <h3 class="book-title">${book.title}</h3>
+<h3 class="book-title">${book.title.toUpperCase()}</h3>
         </a>
         <p class="book-author">${book.author || "Unknown"}</p>
         <p class="book-price" data-price="${book.price}">${book.price} PKR</p>
